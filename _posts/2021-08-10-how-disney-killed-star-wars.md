@@ -34,6 +34,6 @@ I could give endless more examples but i think i made the point.
 Bring back the old style to think about the force, manners and the style to write the films.
 
 But most importanly. LET GO OF MAIN CHARCTERS, move the story.
-The ONLY character they did that with in the entire series after 6 was Han solo and that was to short...
+Yes they let Luke, lea and han go but bring back palpatine without explanation?!
 
 And please also film some scenes on coruscant, i miss that place.
