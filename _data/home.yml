@@ -2,7 +2,7 @@ navbar_entries:
   - title: website
     url: https://liz3.net
 
-  - title: blog
+  - title: posts
     url: blog
 
 footer_entries:
