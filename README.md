@@ -1,3 +1,7 @@
+# My blog
+This is my blog.
+Its based on a pretty cool jekyll theme i modified to match the nord theme, its very simple but this should be about reading. not design.
+
 ## moonwalk - a fast and minimalistic blog theme with clean dark mode
 
 <img src="https://raw.githubusercontent.com/abhinavs/moonwalk/master/_screenshots/moonwalk.png" />
@@ -80,7 +84,7 @@ The `home.yml` file accepts the following fields:
   - home - for landing page
   you can change your `index.md` file to use either home or blog layout.
 
-2. It is extremely easy to tweak the color scheme. 
+2. It is extremely easy to tweak the color scheme.
   - for light mode, customize these css variables
 ```css
 html {
@@ -121,7 +125,7 @@ When your theme is released, only the files in `_layouts`, `_includes`, `_sass` 
 To add a custom directory to your theme-gem, please edit the regexp in `moonwalk.gemspec` accordingly.
 
 ## Acknowledgement
-This theme's original base is [no style please!](https://github.com/riggraz/no-style-please) theme created by  [Riccardo Graziosi](https://riggraz.dev/) - many thanks to him for creating a wonderful theme with nearly no css. 
+This theme's original base is [no style please!](https://github.com/riggraz/no-style-please) theme created by  [Riccardo Graziosi](https://riggraz.dev/) - many thanks to him for creating a wonderful theme with nearly no css.
 
 ## License
 
@@ -140,4 +144,4 @@ If you like Moonwalk, do check out my other projects
 
 ✨⚡You can read more about me on my [blog](https://www.abhinav.co/about/) or follow me on Twitter - [@abhinav](https://twitter.com/abhinav)
 
-✨⚡If you like my work, you can [buy me a coffee](https://buymeacoffee.com/abhinavs)                
+✨⚡If you like my work, you can [buy me a coffee](https://buymeacoffee.com/abhinavs)
