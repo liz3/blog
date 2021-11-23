@@ -75,6 +75,6 @@ Then if needed we sleep by that amount.
 
 
 ## Conclusion
-I learned this way of cacluating by reading the discord.py source code and how they do it.
+I learned this way of calculating by reading the discord.py source code and how they do it.
 
 I hope you where able to take something from this and maybe even use it!
