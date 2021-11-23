@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://liz3.github.io/blog//blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://liz3.github.io/blog//blog/" rel="alternate" type="text/html" /><updated>2021-11-23T01:13:08+00:00</updated><id>https://liz3.github.io/blog//blog/feed.xml</id><title type="html">Liz3 Blog</title><author><name>Liz3</name></author><entry><title type="html">How do time media over the network or when playing back</title><link href="https://liz3.github.io/blog//blog/media-timing.html" rel="alternate" type="text/html" title="How do time media over the network or when playing back" /><published>2021-11-23T00:00:00+00:00</published><updated>2021-11-23T00:00:00+00:00</updated><id>https://liz3.github.io/blog//blog/media-timing</id><content type="html" xml:base="https://liz3.github.io/blog//blog/media-timing.html">&lt;p&gt;So you’ve got your discord bot or a library for playing video files but somethings just off? Lag after some time or even directly from the beginning?
+Chances are that maybe the timing is off, and to be fair its really hard to get it right. Heres how to solve it.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-naive-approach&quot;&gt;The naive approach&lt;/h2&gt;
+&lt;p&gt;Timing video/audio cant be hard can it? Turns out its not as straight forward as you might think.&lt;/p&gt;
+
+&lt;p&gt;The Naive and also my first attempt was just to, send &lt;em&gt;x&lt;/em&gt; amount of data for a time period, measure how long that takes and then &lt;em&gt;sleep&lt;/em&gt; for the time that took.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;start = now()
+
+to_send = prepare_data() // some encoder/decoder maybe
+send_data(to_send)  // send data to a blip frame or some network endpoint.
+
+elapsed = now() - start
+if elapsed &amp;gt; 0 do
+  sleep(data_time_amount - elapsed)
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;That seams reasonable right?&lt;/p&gt;
+
+&lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
+&lt;p&gt;The issue with that approach is that its &lt;em&gt;relative&lt;/em&gt;.
+The time passed is suspect to the operating system suspending the process, giving it other priority and other factors.
+Which means while the approach is &lt;em&gt;theoretically&lt;/em&gt; correct, its not going to work unless there is 0 delay beyond your desired one, which will never happen.&lt;/p&gt;
+
+&lt;p&gt;Regarding that its also interesting because you learn about kernel schedulers, when i did this, it was often more a problem on macOS then on gnu/linux because the linux kernel scheduler is a lot more aggressive and resource &lt;em&gt;giving&lt;/em&gt; then macOS, macOS will make sure its own services have enough priority to keep certain things like the desktop running smoothly.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-solution&quot;&gt;The solution&lt;/h2&gt;
+&lt;p&gt;I put &lt;em&gt;relative&lt;/em&gt; in the previous section in italic for a reason because in that problem is the solution, we need to time in a &lt;em&gt;absolute&lt;/em&gt; approach.
+That works because(assuming we know the audio packet/frame or video frame duration) we can calculate the position we &lt;strong&gt;should&lt;/strong&gt; reach.&lt;/p&gt;
+
+&lt;p&gt;Great how do we do that?&lt;/p&gt;
+
+&lt;p&gt;Here the solution in c++ from my project &lt;a href=&quot;https://github.com/liz3/tokio&quot;&gt;tokio&lt;/a&gt; in c++&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;thread&amp;gt;
+#include &amp;lt;chrono&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chrono&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;high_resolution_clock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time_point&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start_point&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;high_resolution_clock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;elapsed_frames&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;frame_duration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.02&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;should_play&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;send_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;elapsed_frames&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;high_resolution_clock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time_point&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;point_now&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;high_resolution_clock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;duration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;absolute_elapsed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;duration_cast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;duration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;point_now&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start_point&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_play_head&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;frame_duration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;elapsed_frames&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to_delay&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_play_head&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;absolute_elapsed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_delay&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;this_thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sleep_for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chrono&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;microseconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_delay&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)));&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;So what do we do here?
+First we need to know 2 things:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;the current time in a high resolution - &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;start_point&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;how long in absolute time one iteration of our loop passes, here &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;frame_duration&lt;/code&gt; 2% of a second.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In the loop we send our data and then increment a simple counter per iteration.&lt;/p&gt;
+
+&lt;p&gt;Then we calculate the &lt;strong&gt;absolute&lt;/strong&gt; time elapsed since we started playing(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;absolute_elapsed&lt;/code&gt;), that gets rid of that relative issue from the naive approach.
+After that we calculated the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;current_play_head&lt;/code&gt;, basically where the audio should be after the sleep we are now starting.
+Lastly we calculate the actual amount to sleep(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;to_delay&lt;/code&gt;) by substracting the elapsed time from the play head.&lt;/p&gt;
+
+&lt;p&gt;Then if needed we sleep by that amount.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I learned this way of calculating by reading the discord.py source code and how they do it.&lt;/p&gt;
+
+&lt;p&gt;I hope you where able to take something from this and maybe even use it!&lt;/p&gt;</content><author><name>Liz3</name></author><summary type="html">So you’ve got your discord bot or a library for playing video files but somethings just off? Lag after some time or even directly from the beginning? Chances are that maybe the timing is off, and to be fair its really hard to get it right. Heres how to solve it.</summary></entry><entry><title type="html">How Disney ruined Star Wars</title><link href="https://liz3.github.io/blog//blog/how-disney-killed-star-wars.html" rel="alternate" type="text/html" title="How Disney ruined Star Wars" /><published>2021-08-10T00:00:00+00:00</published><updated>2021-08-10T00:00:00+00:00</updated><id>https://liz3.github.io/blog//blog/how-disney-killed-star-wars</id><content type="html" xml:base="https://liz3.github.io/blog//blog/how-disney-killed-star-wars.html">&lt;p&gt;Im a huge star wars fan, theres no doubt in that, its amazing how the first 6 parts combine science-fiction with spiritual topics and even some deep theming.
+Of course its not perfect. Lucasfilm didnt always do everything perfect and its still confusing how they wrote out the Anakin &amp;amp; Padmé to she being what, 18 years older? but thats another topic.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-the-problem-was-able-to-be-created&quot;&gt;How the problem was able to be created&lt;/h2&gt;
+&lt;p&gt;The first 6 parts where compared to the later parts a lot more serious. Not necasserily really darker, but they definitely had more seriousness to them.
+Why is that?&lt;/p&gt;
+
+&lt;p&gt;In the first 6 movies the emphasis is strongly on holding to the code of the jedi and following it closely. A good example is the 2 part when Anakin asks the ship to be landed and he gets in an argument with his master kenobi.&lt;/p&gt;
+
+&lt;p&gt;Theres also a great focus on the aspect of master/apprentice and the fact you should be thriving to get more closely with the force and become wiser.
+That does not mean there cant be fun, in the second and third part how count doku tries to hold his fights very very “english style” being polite is one example.&lt;/p&gt;
+
+&lt;p&gt;And lastly while yes of course it was possible to do things which even in the star wars galaxy where crazy there was still a system behind it, disney broke the system a lot of times for no real reasons.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
+&lt;p&gt;Disney!&lt;/p&gt;
+
+&lt;p&gt;Disney tried to turn star wars into a bad comedy show half serious in the star wars franchise?&lt;/p&gt;
+
+&lt;p&gt;One of my facorite examples is in the 8th film where Snoke tries to recrute kailo and speaks: “a new Vader”, which is just mind boggling. Vader was created because anakin over estimated his skills in a battle with his old master kenobi. Vader was just the name.
+I shows how little disney tried to develop the story and how desperately they tried to not let old characters disappear. a good counter example is kenobis master Qui-Gon Jinn, he was one of the main actors in the first part and had one more appearance at the end of the 3 part. but thats it. he character is gone.&lt;/p&gt;
+
+&lt;p&gt;Another example that shows how they couldnt let characters go, is how lea saved herself randomly out of space pulling herself back to the ship using the force, yes theres the jedi jump but this would not hve been possible normally, again becasuse they couldnt let a main character die.&lt;/p&gt;
+
+&lt;p&gt;Then the scene where rai gives luke anakins light saber and he just throws it away…disney trying to be funny in the wrong way. In a normal star wars he would have maybe also turned down the request to train ray, but not in that way.&lt;/p&gt;
+
+&lt;p&gt;I could give endless more examples but i think i made the point.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-solve-the-problem&quot;&gt;How to solve the problem&lt;/h2&gt;
+&lt;p&gt;Bring back the old style to think about the force, manners and the style to write the films.&lt;/p&gt;
+
+&lt;p&gt;But most importanly. LET GO OF MAIN CHARCTERS, move the story.
+Yes they let Luke, lea and han go but bring back palpatine without explanation?!&lt;/p&gt;
+
+&lt;p&gt;And please also film some scenes on coruscant, i miss that place.&lt;/p&gt;</content><author><name>Liz3</name></author><summary type="html">Im a huge star wars fan, theres no doubt in that, its amazing how the first 6 parts combine science-fiction with spiritual topics and even some deep theming. Of course its not perfect. Lucasfilm didnt always do everything perfect and its still confusing how they wrote out the Anakin &amp;amp; Padmé to she being what, 18 years older? but thats another topic.</summary></entry></feed>
