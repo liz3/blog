@@ -67,11 +67,11 @@ First we need to know 2 things:
 
 In the loop we send our data and then increment a simple counter per iteration.
 
-Then we calculate the **absolute** time elapsed since we started playing, that gets rid of that relative issue from the naive approach.
+Then we calculate the **absolute** time elapsed since we started playing(`absolute_elapsed`), that gets rid of that relative issue from the naive approach.
 After that we calculated the `current_play_head`, basically where the audio should be after the sleep we are now starting.
 Lastly we calculate the actual amount to sleep(`to_delay`) by substracting the elapsed time from the play head.
 
-Then if needed we sleep by that amouny.
+Then if needed we sleep by that amount.
 
 
 ## Conclusion
