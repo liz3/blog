@@ -10,7 +10,7 @@ The Problem is that the CLI arguments passed to the `docker` tool are not 1:1 th
 It would be good if i could see what the `docker` tool sends to the API, because while the Engine Api has a documentation, it is missing certain things or does not dive into detail to the degree i would need....well turns out i can do that using a little hack!
 
 ## The Solution
-I have this tool called [dbg-server](https://github.com/liz3/dbg-server) which is a very simple http server to debug client, its made to be spawned in a terminal or be piped but basically it prints what it receives to the console, note that it will accept any method and path, it will show us which path the request was.
+I have this tool called [dbg-server](https://github.com/liz3/dbg-server) which is a very simple http server to debug clients, its made to be spawned in a terminal or be piped but basically it prints what it receives to the console, note that it will accept any method and path, it will show us which path the request was.
 
 So first we need to start the tool, if you have node/npm thats easy using the npx utility provided with npm:
 ```sh
@@ -67,7 +67,7 @@ POST => /v1.24/containers/create[application/json]:
     "Labels": {},
     "HostConfig": {
       "Binds": [
-        "/Users/liz3/:/root"
+        "/Users/liz3:/root"
       ],
       "ContainerIDFile": "",
       "LogConfig": {
@@ -99,7 +99,7 @@ POST => /v1.24/containers/create[application/json]:
     "Platform": null
   }
 ```
-Woah so thats how it does that!
+Woah so thats how it does that! As example we can see that the `-v` turned into a entry IN `Binds` IN `HostConfig`
 
 ## Conclusion
 This helped me solve a real world problem in software and maybe will you too, it was definitely a useful thing. thats why i like sometimes say i do software engineering & hacking, because isnt that what hacking is? thinking outside the box?
