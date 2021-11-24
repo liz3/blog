@@ -10,7 +10,7 @@ The Problem is that the CLI arguments passed to the `docker` tool are not 1:1 th
 It would be good if i could see what the `docker` tool sends to the API, because while the Engine Api has a documentation, it is missing certain things or does not dive into detail to the degree i would need....well turns out i can do that using a little hack!
 
 ## The Solution
-I have this tool called[dbg-server](https://github.com/liz3/dbg-server) which is a very simple http server to debug client, its made to be spawned in a terminal or be piped but basically it prints what it receives to the console, note that it will accept any method and path, it will show us which path the request was.
+I have this tool called [dbg-server](https://github.com/liz3/dbg-server) which is a very simple http server to debug client, its made to be spawned in a terminal or be piped but basically it prints what it receives to the console, note that it will accept any method and path, it will show us which path the request was.
 
 So first we need to start the tool, if you have node/npm thats easy using the npx utility provided with npm:
 ```sh
