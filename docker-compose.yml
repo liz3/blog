@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  builder:
+    build: ./
+    container_name: blog_build
+    volumes:
+      - "~/.ssh/server_rsa:/root/.ssh/id_rsa"
+      - "~/.ssh/config:/root/.ssh/config"
+      - "~/.ssh/known_hosts:/root/.ssh/known_hosts"

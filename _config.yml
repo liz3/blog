@@ -1,7 +1,7 @@
 title: Liz3 Blog
 author: Liz3
-url: https://liz3.github.io/blog/ # root address of the site
-baseurl: /blog
+url: https://blog.liz3.cat # root address of the site
+baseurl: /
 description:
 
 permalink: /:slug.html
