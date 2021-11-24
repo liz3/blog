@@ -7,7 +7,7 @@ So at [Giggl](https://giggl.app) we do quite some stuff with Docker and i wanted
 ## The Problem
 The Problem is that the CLI arguments passed to the `docker` tool are not 1:1 the same passed to the daemon api, and for things like the *seccomp* you actually read files before sending the content to the Docker daemon.
 
-It would be good if i could see what the `docker` tool sends to the API, because while the Engine Api is present, it is missing certain things or does not dive into detail to the degree i would....well turns out i can using a little hack!
+It would be good if i could see what the `docker` tool sends to the API, because while the Engine Api has a documentation, it is missing certain things or does not dive into detail to the degree i would need....well turns out i can do that using a little hack!
 
 ## The Solution
 I have this tool called[dbg-server](https://github.com/liz3/dbg-server) which is a very simple http server to debug client, its made to be spawned in a terminal or be piped but basically it prints what it receives to the console, note that it will accept any method and path, it will show us which path the request was.
