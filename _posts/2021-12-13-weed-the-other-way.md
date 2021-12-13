@@ -44,9 +44,9 @@ Now the bad stuff begins...i always *tend* to have a faster heart when excited b
 After the orientation started getting worse, i started feeling my heart more and more.
 
 And that wasnt playing, i was setting doing nothing but trying to relax myself with a every increasing heart rate. At that point i was aware and trying to slow it with controlled breathing but nothing it just wouldnt decrease.  
-As a side note, a little earlier there was already poluce there out of another reason and one of my friend asked them and got told to just wait the high out unless theres a critical health issue....well..
+As a side note, a little earlier there was already police there out of another reason and one of my friend asked them and got told to just wait the high out unless theres a critical health issue....well..
 
-So after 5-10 minutes, **it was 0:30 now i told my friend to call an ambulance** since he confirmed too my heart was going fast and at this point i was just panicking while tryiung to be calm, as a funfact while he was on the phone i almost changed my mind and was about to tell him to leave it when it started getting extreme so i thought its probs the right thing to do.  
+So after 5-10 minutes, **it was 0:30 now i told my friend to call an ambulance** since he confirmed too my heart was going fast and at this point i was just panicking while trying to be calm, as a funfact while he was on the phone i almost changed my mind and was about to tell him to leave it when it started getting extreme so i thought its probs the right thing to do.  
 
 So after he called them we decided to go down, they actually took a bit longer but i was already out, i was not feeling well and just trying to wait for the ambulance...and it was a long wait...or it felt like it, since in reality it was just what, 7 minutes? 
 I stod there infront of street, trying to understand where i was, what was going on. was the ambulance there and i was just at the wrong exit? where they not coming? i just stod there waiting....luckily they did come.
