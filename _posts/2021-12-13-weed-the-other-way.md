@@ -3,8 +3,8 @@ layout: post
 title: Weed experienced the other way...
 ---
 *note the times are in european standard but 12-23 is pm, 0-8 is am*
-Where do i start on this one, well at the beginning i suppose.
 
+Where do i start on this one, well at the beginning i suppose.
 I am generally open towards drugs, not extreme since i am very aware of the dangers but i also see the benifits and thus i am rather open towards them.
 
 ## The beginning.
