@@ -2,7 +2,7 @@
 layout: post
 name: iRacing and kernel developing
 ---
-So you do windows kernel development but then one day decide you want to play iRacding? Heres my story:
+So you do windows kernel development but then one day decide you want to play iRacing? Heres my story:
 
 ## The Problem
 I like motorsport, its not a secret, on that day i wanted to play some iRacing to see the Mercedes Benz AMG W12 which was developed for the iRacing simulator.
