@@ -3,7 +3,7 @@ navbar_entries:
     url: https://liz3.cat
 
   - title: posts
-    url: blog
+    url: /
 
 footer_entries:
   - title: liz3's homepage
