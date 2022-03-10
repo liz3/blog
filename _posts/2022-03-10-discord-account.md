@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How i lost my Discord account, got it back, and how terrible the Discord support is.
+title: About loosing a discord account, getting it back and the Discord support
 ---
 Hah, i would never lose my discord account, how could this ever happen to anyone EVER whos not actively trying to,
 believe me i thought that too, i wsa sure i wouldnt ever get my account stolen,
@@ -76,7 +76,7 @@ Person > did you get to vote for me?
 I then refreshed the page to check if the QR code refreshed, it did.
 
 So i tried to login with a QR code, but that did not work, it failed with the following message on my phone:
-![QR Code Scam](/assets/images/discord/scam_qr_error.png)
+<img src="/assets/images/discord/scam_qr_error.png" style="height: 400px; width: auto" />
 
 **Takeaway: Discord has these systems centralized, if this fails its, 10000% a scam**
 
@@ -106,10 +106,9 @@ The server of which the scammers got the account from which they messaged me, di
 there happened so much on that server, this would deserve its own blog entry to be honest, but in short, i tried to kick my account using bots, waiting for people but in the end non worked and yes,
 here the worst of the worst happened, the entire server got destroyed because my account was compromised, remember the other account had no actual permissions left...
 
-**Takeaways:
-- Stand to your mistake, like i did, to this day i fully stand to what happened there, its my and only my responsbility.
-- True friends will not leave you or be mad at you, even after this, funny this is a test to see directly if the people who entrusted you are real friends or people only using you against payment of roles
-**
+**Takeaways:**
+- **Stand to your mistake, like i did, to this day i fully stand to what happened there, its my and only my responsbility.**
+- **True friends will not leave you or be mad at you, even after this, funny this is a test to see directly if the people who entrusted you are real friends or people only using you against payment of roles**
 
 Having to witness the server being destroyed was probably one of, if not the worst feeling i ever had.
 
@@ -154,19 +153,16 @@ And i was unable to answer emails and let them know....
 
 so i was in the air,
 the request from my alt, the account i used while i did not have my original, clearly mentioned in the ticket that:
-```
-This is the seccond request i do but i cannot answer the email to the first because it gets rejected by zendesk.
-```
+
+> This is the seccond request i do but i cannot answer the email to the first because it gets rejected by zendesk.
+
 But still got a copy paste answer stating:
-```
-Hey Yann,
-
-To protect our users' privacy and security, we're only able to discuss account details with the email address associated with that Discord account. Since it looks like you're currently writing in about another account associated with another email address, please send us a new ticket through that other email address via our support form instead and I can help check on that request through there.
-
-For General Support - https://dis.gd/contact
-
-If you have any other questions in the meantime, please let me know here!
-```
+
+> Hey Yann,  
+> To protect our users' privacy and security, we're only able to discuss account details with the email address associated with that Discord account. Since it looks like you're currently writing in about another account associated with another email address, please send us a new ticket through that other email address via our support form instead and I can help check on that request through there.  
+> For General Support - https://dis.gd/contact  
+> If you have any other questions in the meantime, please let me know here!
+
 i.e the support did not even READ my request, i totally get those protective measures and they make sense, but the support should at least read and try to provide a way to work around the issue, we will get back to something similar in the next section.
 
 In the end i got the account back the next morning through a friend who had directly contacted a employee at discord, who manually reset the 2fa code and all spam flags on the account, giving me it back, thank you.
@@ -200,49 +196,44 @@ one could argue that i lost it because of own dumbness and thats not even wrong,
 
 Here the message i wrote to the support:
 
-```
-Hey there,
-this means a lot to me so i would be happy to get a short attention from whoever reads this on the supporting end.
+
+> Hey there,  
+> this means a lot to me so i would be happy to get a short attention from whoever reads this on the supporting end.  
+> I lost this account a couple days ago to a scammer for a time period of about 26 hours.
+
+> My account had the Early verified bot developer badge for the bot Shoob, bot id: 673362753489993749.  
+> I lost my Early verified bot developer badge during the time period the scammer had the account, although not because he did something, but because i asked the admin of the discord developer team to remove me in order to protect the bot.  
+> After i got the account back, the admin of shoobs team already added me back to the team but sadly it seams that does not reinstate the badge :((((...i would lie to say the badge didnt make me proud and i would love to have it back although i will accept all outcomes, my id: 195906408561115137.  
+
+> I love discord and it would mean the world to me if it was possible to get it back.
 
-I lost this account a couple days ago to a scammer for a time period of about 26 hours.
-
-My account had the Early verified bot developer badge for the bot Shoob, bot id: 673362753489993749.
-
-I lost my Early verified bot developer badge during the time period the scammer had the account, although not because he did something, but because i asked the admin of the discord developer team to remove me in order to protect the bot.
-
-After i got the account back, the admin of shoobs team already added me back to the team but sadly it seams that does not reinstate the badge :((((...i would lie to say the badge didnt make me proud and i would love to have it back although i will accept all outcomes, my id: 195906408561115137.
-
-I love discord and it would mean the world to me if it was possible to get it back.
-
-here the data again
-Bot id: 673362753489993749
-My account(this) id: 195906408561115137
-The Developer teams id(i am a part of it again): TEAM ID
-I added a screenshot of a old chat with the animesoul owner where we got the badges...
-Kind regards,
-Liz3
-```
+> here the data again  
+> Bot id: 673362753489993749  
+> My account(this) id: 195906408561115137  
+> The Developer teams id(i am a part of it again): TEAM ID  
+> I added a screenshot of a old chat with the animesoul owner where we got the badges...  
+> Kind regards,  
+> Liz3
 
 I quickly got a answer, note that for the account restoration it took almost 16 hours, this answer came within 15 minutes:
 
-```
-Hey Liz3,
+
+> Hey Liz3,
+
+> Thanks for reaching out to us!  
+
+> As we recently announced in our official Discord Developers server, we discontinued the verified developer profile badge for anyone who submitted their bot for verification after August 19th, 2020. Any bot which requested verification prior to that date and is approved for verification will still receive the profile badge, now renamed the Early Verified Developer badge.  
+
+> When we announced the Bot Verification process, we promised that it wouldn't be a long and difficult process. We wanted to maintain a five-day turnaround time, and we haven't done that. We’re taking the following step to try and better meet that commitment.  
+
+> We’ve approved thousands of bots so far. As time goes on, the verification queue has become more and more filled with fraudulent submissions by individuals that are not submitting actual bots, but are going to extreme lengths to get a profile badge. These submissions are hindering the ability for legitimate bots to get verified in time for the deadline.  
+
+> All verified bots will continue to receive the Verified checkmark. The checkmark for your bot is an important way for our community to recognize your bot as a trusted bot partner. The only thing we've discontinued is the special badge on a developer's profile.
 
-Thanks for reaching out to us! 
-
-As we recently announced in our official Discord Developers server, we discontinued the verified developer profile badge for anyone who submitted their bot for verification after August 19th, 2020. Any bot which requested verification prior to that date and is approved for verification will still receive the profile badge, now renamed the Early Verified Developer badge.
-
-When we announced the Bot Verification process, we promised that it wouldn't be a long and difficult process. We wanted to maintain a five-day turnaround time, and we haven't done that. We’re taking the following step to try and better meet that commitment.
-
-We’ve approved thousands of bots so far. As time goes on, the verification queue has become more and more filled with fraudulent submissions by individuals that are not submitting actual bots, but are going to extreme lengths to get a profile badge. These submissions are hindering the ability for legitimate bots to get verified in time for the deadline.
-
-All verified bots will continue to receive the Verified checkmark. The checkmark for your bot is an important way for our community to recognize your bot as a trusted bot partner. The only thing we've discontinued is the special badge on a developer's profile.
-
-I sincerely apologize for any confusion or disappointment this causes. If you have any further questions regarding this change or anything else, I'd be happy to help further, and please consider joining our Developers server as well for further announcements regarding the Discord API and our bot verification program.
-
-Sincerely,
-Support person
-```
+> I sincerely apologize for any confusion or disappointment this causes. If you have any further questions regarding this change or anything else, I'd be happy to help further, and please consider joining our Developers server as well for further announcements regarding the Discord API and our bot verification program.
+
+> Sincerely,  
+> Support person
 
 I cannot express how incredibly disgusting the answer is, i was really thinking to include the persons name, but i have enough respect not to,
 but this answer shows the support person did NO EFFORT to even READ my request and just went on with a simple copy paste answer...which is extremely disrespectful, considering i spent time detailing the case.
@@ -250,19 +241,17 @@ but this answer shows the support person did NO EFFORT to even READ my request a
 Do i not even deserve a human answer?
 I then annoyed answered them with:
 
-```
-did you read my question? i had it.
-the bot is verified and i had the badge.
-
-Why does the support seam to just paste answers copy paste, i spent time detailing my case and get hit like that. Please read my case and give he a human answer if possible.
-
-Liz3
-```
+> did you read my question? i had it.  
+> the bot is verified and i had the badge.
+
+> Why does the support seam to just paste answers copy paste, i spent time detailing my case and get hit like that. Please read my case and give he a human answer if possible.
+
+> Liz3
+
 and importantly:
-```
-> Any bot which requested verification prior to that date and is approved for verification will still receive the profile badge, now renamed the Early Verified Developer badge
-This applies here
-```
+
+> Any bot which requested verification prior to that date and is approved for verification will still receive the profile badge, now renamed the Early Verified Developer badge  
+> This applies here
 
 They then just answered with, no sorry cant do anything...
 
@@ -271,17 +260,16 @@ wow, not a single interest in providing help, not only in the regards that the *
 **But it gets even better!**
 
 Out of frustration i opened a new ticket, with a very similar content to the original above,
-to which i gpt this answer
-```
-Hey Yann,
-
-Thanks so much for gathering all of that info for me! I just wanted to let you know that I'll be escalating this ticket to our dev team to look into further. I genuinely apologize for the inconvenience in the meantime and will keep you updated here as soon as I hear back!
-
-Let me know if you have any other questions at any time!
-
-Best,
-Another support person
-```
+to which i got this answer
+
+> Hey Yann,
+
+> Thanks so much for gathering all of that info for me! I just wanted to let you know that I'll be escalating this ticket to our dev team to look into further. I genuinely apologize for the inconvenience in the meantime and will keep you updated here as soon as I hear back!  
+> Let me know if you have any other questions at any time!
+
+> Best,  
+> Another support person
+
 
 That sounded so good, i answered thanking and that i would wait patiently,
 wait, wait, *wait to this day*
