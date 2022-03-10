@@ -90,9 +90,9 @@ So i manually logged into the site, together with 2FA.
 After logging in into the site, i was instantly redirected to that login site and there i realised it....
 
 Within the 30 seconds time frame of the 2FA code, the scam automatically replaced the 2fa token AND the backup codes, it was not possible to login with the backup codes, yes i actually save them,
-this was probs of my darkest moments ever.
+this was probably one of my darkest moments ever.
 
-The main issue here again was that i had that initial trust of a peson i had no direct contact with before but knew as a admin from a big server.
+The main issue here again was that i had that initial trust towards a person, i had no direct contact with before but knew as a admin from a big server.
 
 ## Whats Next?
 Wow what a shock, i just lost my discord account to a scam....it really happened to me.
