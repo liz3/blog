@@ -3,7 +3,7 @@ layout: post
 title: About loosing a discord account, getting it back and the Discord support
 ---
 Hah, i would never lose my discord account, how could this ever happen to anyone EVER whos not actively trying to,
-believe me i thought that too, i wsa sure i wouldnt ever get my account stolen,
+believe me i thought that too, i was sure i wouldnt ever get my account stolen,
 but i still did, so let me tell you a story, with some key takeaways along the way, even for experienced users.
 
 ## How it started
@@ -35,8 +35,8 @@ The person then proceeded to send a link to the big server, along with a screens
 
 **Takeaway: A real person is not likely to mention its them in a direct message channel.**
 
-I can only mention again i never wrote with that person again,
-but here i did the first f-up, i did not get suspicous when they introduced themselfs, which normally shouldnt happen.
+I can only mention again i never wrote with that person before,
+but here i did the first f-up, i did not get suspicious when they introduced themselfs, which normally shouldnt happen.
 
 i then answered:
 ```
@@ -57,12 +57,14 @@ which without context could have been valid.*
 
 For context here: Discord does have a certified Moderator program, but it does not have a vote system(i was not certain about that at that date),
 so before i did click the link i googled it, sadly google did not have that site as first result,
-but a discord blog article which after checking it was close enough to me with the trust not instantly marking this as a red flag obvious scam, but the article also didnt like a external site anywhere.
+but a discord blog article which after checking it was close enough to me with the trust not instantly marking this as a red flag obvious scam, but the article also didnt link a external site anywhere.
 
 So i clicked the link and it brough me to a discord login page, i was not sure here, i had a bad feeling about it being legitimate,
 i went back to the discord chat and saw they *deleted the message with the link*!
 
-**Takeaway: If a person deletes a link in a chat they want you to do something with and delete that link, thats a clear red flag!**
+**Takeaway: If a person deletes a link in a chat they want you to do something, thats a clear red flag!**
+
+**Takeaway: if a domain isnt high up on googles result, do not trust it!**
 
 i then wrote:
 ```
