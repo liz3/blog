@@ -2,6 +2,25 @@
 This is my blog.
 Its based on a pretty cool jekyll theme i modified to match the nord theme, its very simple but this should be about reading. not design.
 
+
+## Building:
+```
+brew install chruby ruby-install xz
+ruby-install 3.1.4 -- --with-openssl-dir=$(brew --prefix openssl@3)
+echo "source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh" >> ~/.zshrc
+echo "source $(brew --prefix)/opt/chruby/share/chruby/auto.sh" >> ~/.zshrc
+echo "chruby ruby-3.1.4" >> ~/.zshrc # run 'chruby' to see actual version
+bundle install # in root
+```
+## Static build
+```
+bundle exec jekyll build
+```
+## Serve
+```sh
+bundle exec jekyll serve --livereload
+```
+
 ## moonwalk - a fast and minimalistic blog theme with clean dark mode
 
 <img src="https://raw.githubusercontent.com/abhinavs/moonwalk/master/_screenshots/moonwalk.png" />

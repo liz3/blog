@@ -6,7 +6,7 @@ navbar_entries:
     url: /
 
 footer_entries:
-  - title: liz3's homepage
+  - title: website
     url: https://liz3.cat
 
   - title: twitter
@@ -15,7 +15,7 @@ footer_entries:
   - title: github
     url: https://github.com/liz3
 
-  - title: feed
+  - title: rss feed
     url: feed.xml
 
 misc_entries:
