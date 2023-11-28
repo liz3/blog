@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Getting laid off suddenly
+title: Getting let go suddenly of a company i liked working at
 ---
 In my last post i proudly said im working for [Bun](https://bun.sh), well that didn't exactly last long.
 To be clear i don't want to accuse anyone of the bun team, its more just writing down my thoughts.
@@ -46,11 +46,11 @@ included edits to a third party library maybe also running their test suite(Some
 Fast forward a few weeks the maintainer of the third party library wrote that the implementation is flawed, the next day after some comments i implemented the "correct"
 approach and also added a lot of extra tests, note that in the weeks from opening that Pull Request and the new comments i also learned more of course and got more experiemce with the codebase.
 
-Now you get to decide whether this is something worth getting laid off over, i don't know the answer but my subjective opinion is that knowing im **learning**,
+Now you get to decide whether this is something worth getting let go over, i don't know the answer but my subjective opinion is that knowing im **learning**,
 and implemented the fix within a day and also addressed further reviews very fast it seams somewhat hard but again thats my subjective view.
 
 ## Conclusion
-Im not entirely sure what the takeaway is here, because the mistakes i was laid off over seam like something you should **expect** from someone new to the project and i made clear
+Im not entirely sure what the takeaway is here, because the mistakes i was let go over seam like something you should **expect** from someone new to the project and i made clear
 very early that im new to zig too but willing to learn. Id argue im generally not someone who needs a _lot_ of guidance.
 
 But my only real critique is that i **really really** tried to get feedback and advice the entire way through. And im not referring to being spoon-fed the solution,
