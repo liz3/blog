@@ -45,7 +45,7 @@ I should maybe reiterate that i don't think i would have lived much longer witho
 
 ### Day Clinic
 It's the place which saved me i suppose? (alongside some amazing friends, even if remote).
-I stayed there for 6 weeks in total, most of the activities you do are in a group and obviously resolve around depression and depression related stuff but there`s also stuff like dance therapy, music and so on. On top of course 1:1 sessions with therapists.
+I stayed there for 6 weeks in total, most of the activities you do are in a group and obviously resolve around depression and depression related stuff but there's also stuff like dance therapy, music and so on. On top of course 1:1 sessions with therapists.
 
 The Fact it was group based made it very very very difficult at first for me because of the social phobia but it was also the best ground for improving that, especially since you are around people who have similar experiences and **don't judge you** or wonder, most of them have been there(even if maybe not such an extreme social phobia).
 The Social phobia, suicide thoughts, self harm events and most importantly feeling emotions slowly came back over the 6 weeks and I've received a lot of good feedback about the improvements there from friends.
@@ -71,4 +71,4 @@ This is the main reason i'm writing this because while the depression was entire
 **But I've had this before and also have learned a lot how to deal with it and how to combat it so i'm confident its going to get better soon again, maybe a bit from Sertraline but mostly from experience and friends, having people knowing you have depressions and being there for you can make it so much easier**
 
 
-That`s it for now...Thanks for reading
+That's it for now...Thanks for reading
