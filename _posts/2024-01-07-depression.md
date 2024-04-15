@@ -71,4 +71,4 @@ This is the main reason i'm writing this because while the depression was entire
 **But I've had this before and also have learned a lot how to deal with it and how to combat it so i'm confident its going to get better soon again, maybe a bit from Sertraline but mostly from experience and friends, having people knowing you have depressions and being there for you can make it so much easier**
 
 
-That's it for now...Thanks for reading
+That's it for now...Thanks for reading, [part 2]({% link _posts/2024-04-09-depression-2.md %}).
