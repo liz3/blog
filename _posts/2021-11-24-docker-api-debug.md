@@ -1,6 +1,7 @@
 ---
 layout: post
 title: How to debug Docker CLI api calls
+date: 2021-11-24
 ---
 So at [Giggl](https://giggl.app) we do quite some stuff with Docker and i wanted to do some more specific things with the [Docker Engine API](https://docs.docker.com/engine/api/v1.41/).
 

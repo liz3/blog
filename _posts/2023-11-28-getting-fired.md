@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Getting let go suddenly of a company i liked working at
+date: 2023-11-28
 ---
 In my last post i proudly said im working for [Bun](https://bun.sh), well that didn't exactly last long.
 To be clear i don't want to accuse anyone of the bun team, its more just writing down my thoughts.

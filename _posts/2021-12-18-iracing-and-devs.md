@@ -1,6 +1,7 @@
 ---
 layout: post
 name: iRacing and kernel developing
+date: 2021-12-18
 ---
 So you do windows kernel development but then one day decide you want to play iRacing? Heres my story:
 

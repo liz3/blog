@@ -1,6 +1,7 @@
 ---
 layout: post
 title: About loosing a discord account, getting it back and the Discord support
+date: 2022-03-10
 ---
 Hah, i would never lose my discord account, how could this ever happen to anyone EVER whos not actively trying to,
 believe me i thought that too, i was sure i wouldnt ever get my account stolen,
@@ -208,7 +209,7 @@ Here the message i wrote to the support:
 > After i got the account back, the admin of shoobs team already added me back to the team but sadly it seams that does not reinstate the badge :((((...i would lie to say the badge didnt make me proud and i would love to have it back although i will accept all outcomes, my id: 195906408561115137.  
 
 > I love discord and it would mean the world to me if it was possible to get it back.
-
+
 > here the data again  
 > Bot id: 673362753489993749  
 > My account(this) id: 195906408561115137  
@@ -231,8 +232,9 @@ I quickly got a answer, note that for the account restoration it took almost 16 
 > We’ve approved thousands of bots so far. As time goes on, the verification queue has become more and more filled with fraudulent submissions by individuals that are not submitting actual bots, but are going to extreme lengths to get a profile badge. These submissions are hindering the ability for legitimate bots to get verified in time for the deadline.  
 
 > All verified bots will continue to receive the Verified checkmark. The checkmark for your bot is an important way for our community to recognize your bot as a trusted bot partner. The only thing we've discontinued is the special badge on a developer's profile.
-
-> I sincerely apologize for any confusion or disappointment this causes. If you have any further questions regarding this change or anything else, I'd be happy to help further, and please consider joining our Developers server as well for further announcements regarding the Discord API and our bot verification program.
+
+> I sincerely apologize for any confusion or disappointment this causes. If you have any further questions regarding this change or anything else, I'd be happy to help further, and please consider joining our Developers server as well for further announcements regarding the Discord API and our bot verification program.
+
 
 > Sincerely,  
 > Support person

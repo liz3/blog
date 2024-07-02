@@ -1,6 +1,7 @@
 ---
 layout: post
 title: How do time media over the network or when playing back
+date: 2021-11-23
 ---
 So you've got your discord bot or a library for playing video files but somethings just off? Lag after some time or even directly from the beginning?
 Chances are that maybe the timing is off, and to be fair its really hard to get it right. Heres how to solve it.

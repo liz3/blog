@@ -2,6 +2,7 @@
 layout: post
 title: My Image galleries
 permalink: /images/
+date: 2022-01-22
 ---
 Those who know me a bit longer are aware i did a lot of amateur photography when i was 17-19, im picking that up again!
 

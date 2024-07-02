@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Depression 2
+date: 2024-04-09
 ---
 In the last post i talked about my first experience with [Depression]({% link _posts/2024-01-07-depression.md %}).
 

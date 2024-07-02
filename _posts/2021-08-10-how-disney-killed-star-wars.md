@@ -1,6 +1,7 @@
 ---
 layout: post
 title: How Disney ruined Star Wars
+date: 2021-08-10
 ---
 Im a huge star wars fan, theres no doubt in that, its amazing how the first 6 parts combine science-fiction with spiritual topics and even some deep theming.
 Of course its not perfect. Lucasfilm didnt always do everything perfect and its still confusing how they wrote out the Anakin & Padmé to she being what, 18 years older? but thats another topic.

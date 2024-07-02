@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Weed experienced the other way...
+date: 2021-12-13
 ---
 *note the times are in european standard but 12-23 is pm, 0-8 is am*
 

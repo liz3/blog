@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Depression
+date: 2024-01-07
 ---
 I'm not even sure where exactly to start here, who this is for or why exactly i'm writing it but supposedly it's if you want to learn about the topic or hear my experiences with it, how it changed me and how i cope with relapse.
 

@@ -1,7 +1,8 @@
 ---
 layout: post
 published: false
-title: Experience turning a color e-ink paper display into a digital picture frame...and learning rust along the way.
+title: Experience turning a color e-ink paper display into a digital picture frame...and learning rust along the way.2024-02-06
+date: 2024-06-21
 ---
 This is not something i expected myself to be writing about, but i think the hurdles, learning and overall experience doing this project are worth a blog post.
 
