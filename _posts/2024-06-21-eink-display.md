@@ -21,4 +21,29 @@ But Of course besides the extremely low power consumption, the appeal is that it
 For that interaction it has a range of connectors, Pins which support different protocals, by that i mean that they do not only support setting or reading a voltage and removing it. But they also support more complex protocols for data transfer, analog read and so on.
 
 # Getting started
-When starting i had no experience working with the pico or those e-ink displays.
+When starting i had no experience working with the pico or those e-ink displays. My idea was simply put to have this display rotate through some of my images and display them like a digital picture frame.
+
+After getting the display the first thing was not to use it actually but to get familiar with the pi by just playing around with some LEDs.
+That went pretty well, the pi has a bunch of input and output pins you can control by simply setting them high or low, or in other cases use more advanced protocols for data transfers like i2c, spi and so on.
+
+<img src="/assets/images/eink/diagram.png" style="width: auto" />
+
+This might seam like a lot but once you get the idea of it, the usage actually becomes pretty simple and intuitive.
+
+## Getting the Waveshare display to work
+The display we use is the [7.3inch ACeP 7-Color E-Paper E-Ink Display Module](https://www.waveshare.com/7.3inch-e-paper-hat-f.htm), it supports 7 colors, the data transfer is done via the SPI protocol.
+
+The first hurdles is getting the pins connected, the display has 8 pins, not all of them can be connected to any slot of the Pico, because for example not all pins of the Pico support the SPI protocol.
+
+After the pins are connected, getting the default code setup is the next step. This is not really complicated per se. The issue is that you need specific toolchain setups and libraries for the Pico. After all you are running software directly on the chip, theres no operating system inbetween.
+For this after some time i decided to use [embassy-rs](https://github.com/embassy-rs/embassy).
+
+There are [dedicated libraries](https://github.com/caemor/epd-waveshare) for those displays but i decided against using it because at time of starting the project the implementation for the specific display was just merged into the main branch but even then it did not seam to work and besides that the code needed for the display is not very complicated anyways.
+Although i should mention that the reason the display was not working might have been another one. 
+
+## Issues getting the Display to work
+I would argue the biggest issue while getting the display to work is that Waveshare does provide little to no effective documentation regarding the hardware setup. When starting with this, it could have eliminated a lot of uncertainity while trying to get it to work.
+This comes from the fact that besides the *busy* pin theres no feedback from the display, the pin can be low showing the display is busy and high indicating it's not busy, but thats all.
+
+One of the biggest issues i encountered during that, was that the display not doing anything and the driver board of the display heating up a lot. That came from the fact, that the ribbon cable from the display's driver board and the display has a connector which can be hard to understand.
+Tne reason is that the connector has a closing mechanism which is not intuitive to use, if you do not know the mechanism for opening and closing it, you might aswell think it has no closing function at all. Besides that you need a lot of force equaly distribution to open it.
