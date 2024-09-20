@@ -77,7 +77,7 @@ The actual update happens during the `refresh` call, this call takes ~30 seconds
 What the difference between `turn_off()` and `deep_sleep()` is, im not entirely sure about. But deep_sleep does not release the busy pin ever. Meaning it is something final(probably).
 
 # Display a Picture on the frame
-The biggest part of displaying a picture on the eink display is reducing the colors to the 7 by using dithering, which means putting two of the 7 colors next to each other in a way which from further away seanms like a different color.
+The biggest part of displaying a picture on the eink display is reducing the colors to the 7 by using dithering, which means putting two of the 7 colors next to each other in a way which from further away seams like a different color.
 To archive that we use the `convert` tool from ImageMagick.
 
 We can give it a color palette in form of a BMP and a input file in order to dither the image.
@@ -91,9 +91,9 @@ We can give it a color palette in form of a BMP and a input file in order to dit
 
 Left is **before** and right is after **dithering**, as you can see while the right version is much darker, it does not loose a lot of detail even though it is only made of **7 colours**.
 
-Another thing is that the waveshare display is 800x400 and so we need to scale the image to it:
+Another thing is that the waveshare display is 800x480 and so we need to scale the image to it:
 
-`$ convert /input/image.jpg -alpha off -resize 800x400^ -gravity Center -extend 800x400 +depth -dither FloydSteinberg -remap /assets/palette_file.bmp /output/image.jpg`
+`$ convert /input/image.jpg -alpha off -resize 800x480^ -gravity Center -extend 800x480 +depth -dither FloydSteinberg -remap /assets/palette_file.bmp /output/image.jpg`
 
 After that we can send the file to the display, even though of course we need to send the raw pixel data, not the entire BMP file.
 
@@ -152,7 +152,7 @@ let result = socket.write_all(&bytes);
 
 This is actually pretty cool, it is a very c like api, so wrapping my head around it was not hard.
 
-**A small catch: With the amount the embassy rs runtime takes + the wifi stack, we fill up the RAM of the pico very fast. Making it unable to have a entire image (800 * 400 /2) bytes available on top.**
+**A small catch: With the amount the embassy rs runtime takes + the wifi stack, we fill up the RAM of the pico very fast. Making it unable to have a entire image (800 * 480 /2) bytes available on top.**
 
 But we can work around that, by directly sending the data through to the waveshare display, because the stack is not slow, so speed is not a issue.
 Since the display itself only starts actually updating the displayed content on the refresh command, it is inherently able to handle the entire data size.
@@ -180,7 +180,7 @@ This does give you a working example of how to send data, even though of course 
 # Putting it all together
 At this point you probably have a good idea of how to drive such a display.
 
-I ended up writing a Node.js server using its [tcp api](https://nodejs.org/api/net.html), which first of all has a folder with jpeg files of a lot of my favorite images, which acts at a source.
+I ended up writing a Node.js server using its [tcp api](https://nodejs.org/api/net.html), which first of all has a folder with jpeg files of a lot of my favorite images, which acts as a source.
 Since this is all in LAN theres no authentication.
 
 The node.js app waits for connections to the tcp server, first reads a few bytes from the connection which are controlled by physical buttons(or a touch display) on the pico for going back, forward or get a random image.
@@ -207,4 +207,4 @@ But there are a few things for me which make using it very annoying like that fo
 
 Another thing is async functions and their expectation regarding lifetimes, but that might be due to my limited knowledge of them and might not be a issue with the language or the implementation of async/await in rust.
 
-I like C and i like C++, sometimes i feel rust's safety features get more in my way then to assist me at writing better code. But overall Rust is a very capable tool and i understand everyone who lvoes it, is it going to steer me away from cpp though? probably not.
+I like C and i like C++, sometimes i feel rust's safety features get more in my way then to assist me at writing better code. But overall Rust is a very capable tool and i understand everyone who loves it, is it going to steer me away from C++ though? probably not.
