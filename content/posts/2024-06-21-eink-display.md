@@ -39,7 +39,7 @@ For this after some time i decided to use [embassy-rs](https://github.com/embass
 There are [dedicated libraries](https://github.com/caemor/epd-waveshare) for those displays but i decided against using it because at time of starting the project the implementation for the specific display was just merged into the main branch but even then it did not seam to work and besides that the code needed for the display is not very complicated anyways.
 Although i should mention that the reason the display was not working might have been another one. 
 
-## Issues getting the Display to Powere on
+## Issues getting the Display to Power on
 I would argue the biggest issue while getting the display to work is that Waveshare does provide little to no effective documentation regarding the hardware setup. When starting with this, it could have eliminated a lot of uncertainity while trying to get it to work.
 This comes from the fact that besides the *busy* pin theres no feedback from the display, the pin can be low showing the display is busy and high indicating it's not busy, but thats all.
 
@@ -49,7 +49,7 @@ Tne reason is that the connector has a closing mechanism which is not intuitive 
 <video style="height: auto; width: auto; display: block; margin: 0 auto; max-height: 600px;" controls><source src="/images/eink/connector.mov" type="video/mp4"></video>
 So the thing is: **even after understanding this, the display still did not update. Making me believe it was broken, but the next day it started working**. That was very confusing and to this day i am not sure why it just started working randomly.
 
-Another issue was the confusion about the voltage the display needs, 3.3V or 5V? The dataheet from Waveshare does not make that obvious. It states it supports both. I can confirm it does work with 3.3V, connecting the VCC line to a 3.3V power connector on the pico.
+Another issue was the confusion about the voltage the display needs, 3.3V or 5V? The datasheet from Waveshare does not make that obvious. It states it supports both. I can confirm it does work with 3.3V, connecting the VCC line to a 3.3V power connector on the pico.
 
 ## Display something
 As mentioned earlier i decided to not use a library but to implement the driver code myself.
@@ -57,7 +57,7 @@ Doing that requires a SPI interface, a bunch of functions which send hardcoded s
 The resource i used to write that code is the [waveshare c driver](https://github.com/waveshareteam/e-Paper/blob/master/RaspberryPi_JetsonNano/c/lib/e-Paper/EPD_7in3f.c), porting this to rust was not very difficult using the [spi example](https://github.com/embassy-rs/embassy/blob/main/examples/rp/src/bin/spi.rs) for embassy rs.
 
 The issue there was that the code i wrote was not very maintainable.
-Because i had not used rust for a while and this is pretty low level code, there was a lot of duplication of code, non optimal patterns and bad pratices.
+Because i had not used rust for a while and this is pretty low level code, there was a lot of duplication of code, non optimal patterns and bad practices.
 
 Now the abstract code to display something is:
 ```rust
@@ -77,7 +77,7 @@ The actual update happens during the `refresh` call, this call takes ~30 seconds
 What the difference between `turn_off()` and `deep_sleep()` is, im not entirely sure about. But deep_sleep does not release the busy pin ever. Meaning it is something final(probably).
 
 # Display a Picture on the frame
-The biggest part of displaying a picture on the eink display is reducing the colors to the 7 by using dithering, which means putting two of the 7 colors next to each other in a way which from furher away seanms like a different color.
+The biggest part of displaying a picture on the eink display is reducing the colors to the 7 by using dithering, which means putting two of the 7 colors next to each other in a way which from further away seanms like a different color.
 To archive that we use the `convert` tool from ImageMagick.
 
 We can give it a color palette in form of a BMP and a input file in order to dither the image.
@@ -89,7 +89,7 @@ We can give it a color palette in form of a BMP and a input file in order to dit
   <img src="/images/eink/dither.jpg" style="width: 50%;min-width: 200px" />
 </div>
 
-Left is **non dither** and right is with **dithered**, as you can see while the right version is much darker, it does not loose a lot of detail even though it is only made of **7 colours**.
+Left is **before** and right is after **dithering**, as you can see while the right version is much darker, it does not loose a lot of detail even though it is only made of **7 colours**.
 
 Another thing is that the waveshare display is 800x400 and so we need to scale the image to it:
 
@@ -129,7 +129,7 @@ unwrap!(spawner.spawn(net_task(stack)));
 ```
 See the complete example here [github.com/embassy-rs](https://github.com/embassy-rs/embassy/blob/main/examples/rp/src/bin/wifi_tcp_server.rs).
 
-After this we can use a TCP like API with the socket:
+After this we can use a pretty ordinary Network API to talk with other devices over TCP:
 
 ```rust
 let mut rx_buffer = [0; 4096];
@@ -150,12 +150,12 @@ let result = socket.read(&mut buffer);
 let result = socket.write_all(&bytes);
 ```
 
-This is actually pretty cool, it is a very c like api which is like so wrapping my head around it was not hard.
+This is actually pretty cool, it is a very c like api, so wrapping my head around it was not hard.
 
-**A small catch: With the amount the embassy rs runtime takes + the wifi stack, we fill up the RAM of the pico very fast. Making it unable to have a entire image (800 * 400 /2) bytes to hold the image.**
+**A small catch: With the amount the embassy rs runtime takes + the wifi stack, we fill up the RAM of the pico very fast. Making it unable to have a entire image (800 * 400 /2) bytes available on top.**
 
-But we can work around that, by directly sending the data through to the waveshare display, because the stack is not slow, speed is not a issue.
-Since the display itself only starts actually updating the display on the refresh command, it is inheritly able to handle the entire data size.
+But we can work around that, by directly sending the data through to the waveshare display, because the stack is not slow, so speed is not a issue.
+Since the display itself only starts actually updating the displayed content on the refresh command, it is inherently able to handle the entire data size.
 
 So basically we need to just connect to our remote source and then transfer the data directly to the display driver:
 ```rust
@@ -180,12 +180,12 @@ This does give you a working example of how to send data, even though of course 
 # Putting it all together
 At this point you probably have a good idea of how to drive such a display.
 
-I ended up writing a Node.js server using its [tcp api](https://nodejs.org/api/net.html), which first of all has a folder which jpeg files of a lot of my favorite images, which acts at a source.
-Since this is all local theres no authentication.
+I ended up writing a Node.js server using its [tcp api](https://nodejs.org/api/net.html), which first of all has a folder with jpeg files of a lot of my favorite images, which acts at a source.
+Since this is all in LAN theres no authentication.
 
-The node.js app waits for connections on the tcp server, first reads a few bytes from the connection which are controlled by physical buttons on the pico for going back, forward or get a random image.
+The node.js app waits for connections to the tcp server, first reads a few bytes from the connection which are controlled by physical buttons(or a touch display) on the pico for going back, forward or get a random image.
 
-It then gets that image out of that folder, invokes the `convert` command with the output to stdout(simply by giving this as the last argument rather then a output path: `BMP3:-`) and just sending the BMP data to the connection, updating the image.
+It then gets that image out of that folder, invokes the `convert` command with the output to stdout(simply by giving this as the last argument rather then a output path: `BMP3:-`) using Node's [child_process](https://nodejs.org/api/child_process.html) api and just sending the BMP data to the connection, updating the image.
 
 As a final step i put the image display in a actual image frame to act like a digital image frame displaying my favorite images.
 
@@ -197,13 +197,14 @@ The touch display you can see on the left is pretty simple, it is a [2.9" black/
 It uses [embedded_graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/) which has static bitmap fonts and functions to render shapes and text, this is done on the pico directly.
 
 # Final thoughts
-Even though this project is done for a good while it was one of my favorite projects, i am not per se a hardware guy. My big projects are gui applications and a programming language i contribute to.
+Even though this project is done for a good while it is one of my favorites, i am not per se a hardware guy. My big projects are gui applications and a programming language i contribute to.
 
-This project has tought me a lot how to connect easy hardware components to each other, i have learned about SPI, i2c and other protocols. But most importantly i have had a lot of fun building and coding it, further the projects result gave me a useful way to display some of the images i took .
+This project has tought me a lot how to connect easy hardware components to each other, i have learned about SPI, i2c and other protocols. But most importantly i have had a lot of fun building and coding it, further the projects result gave me a useful way to display some of the images i took in a nice way.
 ## On Rust
-The reality is that i am not sold on rust, rust is a very good language. It does give you a lot of safety and a lot of modern features amongst the memory safety given by the compiler's borrow checker.
-But there are a few things for me which make using it very annoying like that for example when upcasting a integer type, even though it is not possible to have UB you **have** to explicitly cast it, which leads to a lot of casting around numbers which can also happen automatically. Another thing is lifetimes, lifetimes and the way it requires to write types and functions is very unuitive and seams to be more for readability then actual function. The compiler could infer them
+The reality is that i am not sold on rust, rust is a very good language. It does give you a lot of safety and modern features amongst the memory safety given by the compiler's borrow checker.
 
-Another thing is async functions, but that might be due to my limited knowledge and not a issue with the language.
+But there are a few things for me which make using it very annoying like that for example when upcasting a integer type, even though it is not possible to have UB you **have** to explicitly cast it, which leads to a lot of casting around numbers which could also happen automatically. Another thing is lifetimes, lifetimes and the way they require to have types and functions writted is very unintuitive and seams to be more for readability then actual function. The compiler could infer them.
 
-I like C and i like C++, sometimes i feel rusts safety features get more in my way then to assist me. But overall Rust is a very capable tool and i understand everyone who lvoes it, is it going to steer me away from cpp though? probably not.
+Another thing is async functions and their expectation regarding lifetimes, but that might be due to my limited knowledge of them and might not be a issue with the language or the implementation of async/await in rust.
+
+I like C and i like C++, sometimes i feel rust's safety features get more in my way then to assist me at writing better code. But overall Rust is a very capable tool and i understand everyone who lvoes it, is it going to steer me away from cpp though? probably not.
